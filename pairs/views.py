@@ -43,3 +43,16 @@ def delete(request, pk):
     id = Articles.objects.get(pk=pk)
     id.delete()
     return redirect('pairs:index', 1)
+
+def search(request, num):
+    id = request.GET
+    title = Articles.objects.order_by('-updated_at')[(num-1)*15:num*15]
+    btn = math.ceil(Articles.objects.all().count()/15)
+    result = []
+    for i in range(1, btn + 1):
+        result.append(i)
+    context = {
+        'titles':title,
+        'numbers':result,
+    }
+    return render(request, 'pairs/search.html', context)
