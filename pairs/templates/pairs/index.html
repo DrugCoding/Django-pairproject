@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5">
+  <div class="text-end mb-3">
+    <a href="{% url 'pairs:create' %}"><button type="button" class="btn btn-outline-primary">글 작성</button></a>
+  </div>
   <table class="table">
     <thead>
       <tr class="table-dark">
@@ -14,12 +17,19 @@
       {% for title in titles %}
       <tr class="table-light">
         <th scope="row">{{ title.id }}</th>
-        <td>{{ title.title }}</td>
+        <td><a href="{% url 'pairs:detail' title.pk %}" class="text-decoration-none">{{ title.title }}</a></td>
         <td>{{ title.updated_at }}</td>
         <td>{{ title.user_name }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  <div class="text-center">
+    <div class="btn-group me-2" role="group" aria-label="First group">
+      {% for number in numbers %}
+      <a href="{{number}}"><button type="button" class="btn btn-primary">{{ number }}</button></a>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}
