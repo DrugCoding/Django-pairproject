@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
+  <h1 class="text-center mt-5">수정 페이지</h1>
+  <a href="{% url 'pairs:index' 1%}"><button type="button" class="btn btn-outline-dark">메인 페이지</button></a>
   <form action="{% url 'pairs:edit2' id.pk %}">
-    <div class="mb-3 my-5">
+    <div class="mb-3 my-3">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">제목</span>
         <textarea class="form-control" rows="1" name="title">{{id.title}}</textarea>
@@ -11,9 +13,9 @@
         <span class="input-group-text" id="basic-addon2">작성자</span>
         <span class="form-control bg-white d-flex justify-content-between">{{id.user_name}}<span class="text-danger fw-bold fst-italic" >이름은 수정이 불가합니다.</span></span>
       </div>
-      <textarea class="form-control" rows="30" name="content">{{id.content}}</textarea>
+      <textarea class="form-control" rows="25" name="content">{{id.content}}</textarea>
       <div class="text-end mt-3">
-        <input type="submit" class="btn btn-outline-primary" value="수정">
+        <input type="submit" class="btn btn-outline-dark" value="수정">
       </div>
     </div>
   </form>

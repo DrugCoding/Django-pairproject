@@ -46,6 +46,8 @@ def delete(request, pk):
 
 def search(request, num):
     id = request.GET
+    tong = id['search']
+    tong1 = id['title']
     if id['search'] == '작성자':
         temp = Articles.objects.filter(user_name__contains = id['title']).order_by('-updated_at')[(num-1)*15:num*15]
         btn = math.ceil(Articles.objects.filter(user_name__contains = id['title']).count()/15)
@@ -58,5 +60,7 @@ def search(request, num):
     context = {
         'titles': temp,
         'numbers': result,
+        'tong': tong,
+        'tong1': tong1,
     }
     return render(request, 'pairs/search.html', context)
