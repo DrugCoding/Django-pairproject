@@ -46,13 +46,17 @@ def delete(request, pk):
 
 def search(request, num):
     id = request.GET
-    title = Articles.objects.order_by('-updated_at')[(num-1)*15:num*15]
-    btn = math.ceil(Articles.objects.all().count()/15)
+    if id['search'] == '작성자':
+        temp = Articles.objects.filter(user_name__contains = id['title']).order_by('-updated_at')[(num-1)*15:num*15]
+        btn = math.ceil(Articles.objects.filter(user_name__contains = id['title']).count()/15)
+    elif id['search'] == '리뷰 제목':
+        temp = Articles.objects.filter(title__contains = id['title']).order_by('-updated_at')[(num-1)*15:num*15]
+        btn = math.ceil(Articles.objects.filter(title__contains = id['title']).count()/15)
     result = []
     for i in range(1, btn + 1):
         result.append(i)
     context = {
-        'titles':title,
-        'numbers':result,
+        'titles': temp,
+        'numbers': result,
     }
     return render(request, 'pairs/search.html', context)

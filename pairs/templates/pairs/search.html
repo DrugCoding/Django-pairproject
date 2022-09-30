@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5">
+  <h1 class="text-center">검색 결과</h1>
   <div class="text-end mb-3">
-    <a href="{% url 'pairs:create' %}"><button type="button" class="btn btn-outline-primary">글 작성</button></a>
+    <a href="{% url 'pairs:create' %}"><button type="button" class="btn btn-outline-dark">글 작성</button></a>
   </div>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr class="table-dark">
         <th scope="col">리뷰 번호</th>
@@ -17,7 +18,7 @@
       {% for title in titles %}
       <tr class="table-light">
         <th scope="row">{{ title.id }}</th>
-        <td><a href="{% url 'pairs:detail' title.pk %}" class="text-decoration-none">{{ title.title }}</a></td>
+        <td><a href="{% url 'pairs:detail' title.pk %}" class="text-decoration-none text-dark">{{ title.title }}</a></td>
         <td>{{ title.updated_at }}</td>
         <td>{{ title.user_name }}</td>
       </tr>
@@ -27,20 +28,19 @@
   <div class="text-center">
     <div class="btn-group me-2" role="group" aria-label="First group">
       {% for number in numbers %}
-      <a href="{{number}}"><button type="button" class="btn btn-primary">{{ number }}</button></a>
+      <a href="{{number}}"><button type="button" class="btn btn-outline-dark">{{ number }}</button></a>
       {% endfor %}
     </div>
   </div>
   <div class="d-flex justify-content-center mt-3">
-    <form action="{% url 'pairs:search' %}">
+    <form action="{% url 'pairs:search' 1%}">
       <select class="rounded mx-1" name="search">
-        <option selected>검색 설정</option>
-        <option value="1">작성자</option>
-        <option value="2">리뷰 제목</option>
+        <option value="작성자">작성자</option>
+        <option value="리뷰 제목">리뷰 제목</option>
       </select>
       <input class="rounded mx-1" rows="1" name="title">
       <input type="submit" class="btn btn-outline-dark" value="검색">
-  </form>
+    </form>
   </div>
 </div>
 {% endblock %}
