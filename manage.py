@@ -20,3 +20,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+{ "SECRET_KEY": "django-insecure-#&o4b6h%j+(+!ubf6b_26y#^x-$exjztbb=*y*sxvg+jls@w*p"}
