@@ -1,3 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container mt-5">
+  <table class="table">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">리뷰 번호</th>
+        <th scope="col">리뷰 제목</th>
+        <th scope="col">작성 시간</th>
+        <th scope="col">작성자</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for title in titles %}
+      <tr class="table-light">
+        <th scope="row">{{ title.id }}</th>
+        <td>{{ title.title }}</td>
+        <td>{{ title.updated_at }}</td>
+        <td>{{ title.user_name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
